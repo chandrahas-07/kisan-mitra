@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+const { getEvents } = require("./data/eventStore");
+
 const { getBatches } = require("./data/sensorStore");
 
 const express = require("express");
@@ -64,6 +66,10 @@ app.get("/api/stats", (req, res) => {
 
 app.get("/api/alerts", (req, res) => {
   res.json(generateAlerts());
+});
+
+app.get("/api/events", (req, res) => {
+  res.json(getEvents());
 });
 
 app.listen(PORT, () => {

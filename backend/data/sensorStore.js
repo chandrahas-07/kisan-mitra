@@ -1,3 +1,5 @@
+const { addEvent } = require("./eventStore");
+
 const crops = ["Onion", "Potato", "Chili", "Tomato"];
 
 const statuses = ["Healthy", "Warning", "Critical"];
@@ -35,9 +37,19 @@ function evolveBatch(batch) {
 
     batch.status = "Critical";
 
+    addEvent(
+      `${batch.crop} batch entered critical temperature zone.`,
+      "CRITICAL"
+    );
+
   } else if (batch.temperature > 6) {
 
     batch.status = "Warning";
+
+    addEvent(
+      `${batch.crop} batch entered warning temperature zone.`,
+      "WARNING"
+    );
 
   } else {
 
