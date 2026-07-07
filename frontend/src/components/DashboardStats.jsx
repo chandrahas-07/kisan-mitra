@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import { fetchStats } from "../services/api";
 
+import SkeletonCard from "./SkeletonCard";
+
 function DashboardStats() {
 
   const [stats, setStats] = useState(null);
@@ -43,8 +45,18 @@ function DashboardStats() {
   }, []);
 
   if (loading && !stats) {
-    return <p className="text-white">Loading stats...</p>;
-  }
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <SkeletonCard />
+      <SkeletonCard />
+      <SkeletonCard />
+      <SkeletonCard />
+
+    </div>
+  );
+}
 
   if (error) {
     return <p className="text-red-400">{error}</p>;
