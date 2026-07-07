@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 
 import { fetchBatches } from "../services/api";
 
+import SensorDrawer from "./SensorDrawer";
+
 function BatchTable() {
 
   const [batches, setBatches] = useState([]);
+
+  const [selectedBatch, setSelectedBatch] = useState(null);
 
   useEffect(() => {
 
@@ -54,6 +58,7 @@ function BatchTable() {
 
               <tr
                 key={index}
+                onClick={() => setSelectedBatch(batch)}
                 className="border-b border-gray-800 hover:bg-gray-800 transition"
               >
 
@@ -89,6 +94,11 @@ function BatchTable() {
           </tbody>
 
         </table>
+
+        <SensorDrawer
+  selectedBatch={selectedBatch}
+  onClose={() => setSelectedBatch(null)}
+/>
 
       </div>
 

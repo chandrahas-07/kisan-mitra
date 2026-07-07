@@ -45,13 +45,17 @@ function SystemStatus() {
 
   return (
 
-    <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6">
+    <div className="bg-white
+dark:bg-gray-900
+border
+border-gray-200
+dark:border-gray-800">
 
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
 
         <div>
 
-          <h2 className="text-3xl font-bold text-white flex items-center gap-3">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
 
             <span className="w-4 h-4 rounded-full bg-green-400 animate-pulse"></span>
 
@@ -59,7 +63,7 @@ function SystemStatus() {
 
           </h2>
 
-          <p className="mt-3 text-gray-400">
+          <p className="mt-3 text-gray-600 dark:text-gray-400">
             Real-time monitoring across active cold storage batches.
           </p>
 

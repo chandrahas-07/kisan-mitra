@@ -45,11 +45,15 @@ function TemperatureChart() {
 
   return (
 
-    <div className="mt-10 bg-gray-900 border border-gray-800 rounded-2xl p-6">
+    <div className="mt-10 bg-white
+dark:bg-gray-900
+border
+border-gray-200
+dark:border-gray-800 rounded-2xl p-6">
 
       <div className="mb-6">
 
-        <h2 className="text-2xl font-bold text-white">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
           Temperature Trend
         </h2>
 
