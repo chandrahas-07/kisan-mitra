@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const { getEvents } = require("./data/eventStore");
 
-const { getBatches } = require("./data/sensorStore");
+const batchRoutes = require("./routes/batches");
 
 const express = require("express");
 const cors = require("cors");
@@ -56,9 +56,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/api/batches", (req, res) => {
-  res.json(getBatches());
-});
+app.use("/api/batches", batchRoutes);
 
 app.get("/api/stats", (req, res) => {
   res.json(generateStats());
