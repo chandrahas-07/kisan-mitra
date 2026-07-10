@@ -5,6 +5,7 @@ import AlertPanel from "../components/AlertPanel";
 import SystemStatus from "../components/SystemStatus";
 import TemperatureChart from "../components/TemperatureChart";
 import { useAuth } from "../context/AuthContext";
+import RecentActivity from "../components/RecentActivity";
 
 function Dashboard() {
   // 1. Hooks must be declared inside the component function
@@ -21,12 +22,14 @@ function Dashboard() {
         transition-colors
       ">
         <div className="max-w-7xl mx-auto p-6">
-          <h1 className="text-5xl font-bold">
-            Dashboard
-          </h1>
+          <h1 className="text-4xl lg:text-5xl font-extrabold">
+
+    🌾 Kisan Mitra Operations Dashboard
+
+</h1>
 
           <p className="mt-4 text-gray-400 text-lg">
-            Real-time monitoring of cold storage batches.
+            Real-time operational monitoring, event detection, and intelligent alerting for cold storage facilities.
           </p>
 
           {/* 2. Moved the floating 'Operational Access Level' card safely inside the layout */}
@@ -41,9 +44,11 @@ function Dashboard() {
               rounded-2xl
               p-6
             ">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                Operational Access Level
-              </h2>
+              <h2 className="text-xl font-bold">
+
+👤 Logged in as {user.role}
+
+</h2>
               <p className="mt-3 text-gray-600 dark:text-gray-400">
                 {user.role === "Admin" &&
                   "Full system visibility and operational control enabled."}
@@ -59,17 +64,35 @@ function Dashboard() {
             <SystemStatus />
           </div>
 
-          <div className="mt-12">
-            <DashboardStats />
-            <TemperatureChart />
-          </div>
+          <div className="space-y-10 mt-12">
 
-          <BatchTable />
-          <AlertPanel />
+    <DashboardStats />
+
+    <TemperatureChart />
+
+    <BatchTable />
+
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+
+        <AlertPanel />
+
+        <RecentActivity />
+
+    </div>
+
+</div>
         </div>
       </div>
     </MainLayout>
   );
 }
+
+<footer className="mt-16 text-center text-gray-500 text-sm">
+
+Kisan Mitra v1.0
+
+Powered by Team KisanMitra 
+
+</footer>
 
 export default Dashboard;

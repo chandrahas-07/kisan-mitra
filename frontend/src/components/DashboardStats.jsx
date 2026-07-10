@@ -28,7 +28,7 @@ function DashboardStats() {
 
   if (loading && !stats) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
         <SkeletonCard />
         <SkeletonCard />
         <SkeletonCard />
@@ -45,11 +45,42 @@ function DashboardStats() {
   const currentStats = stats || {};
 
   const statsArray = [
-    { title: "Total Batches", value: currentStats.totalBatches ?? 0 },
-    { title: "Critical Alerts", value: currentStats.criticalAlerts ?? 0 },
-    { title: "Avg Humidity", value: currentStats.avgHumidity ?? "0%" },
-    { title: "Sensor Health", value: currentStats.sensorHealth ?? "100%" },
-  ];
+  {
+    title: "📦 Total Batches",
+    value: currentStats.totalBatches ?? 0,
+    color: "text-blue-600 dark:text-blue-400",
+  },
+
+  {
+    title: "🟢 Healthy",
+    value: currentStats.healthy ?? 0,
+    color: "text-green-600 dark:text-green-400",
+  },
+
+  {
+    title: "🟡 Warning",
+    value: currentStats.warning ?? 0,
+    color: "text-yellow-600 dark:text-yellow-400",
+  },
+
+  {
+    title: "🔴 Critical",
+    value: currentStats.critical ?? 0,
+    color: "text-red-600 dark:text-red-400",
+  },
+
+  {
+    title: "🌡 Avg Temperature",
+    value: `${currentStats.averageTemperature ?? 0} °C`,
+    color: "text-orange-600 dark:text-orange-400",
+  },
+
+  {
+    title: "💧 Avg Humidity",
+    value: `${currentStats.averageHumidity ?? 0}%`,
+    color: "text-cyan-600 dark:text-cyan-400",
+  },
+];
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -61,9 +92,9 @@ function DashboardStats() {
           <h3 className="text-gray-600 dark:text-gray-400">
             {stat.title}
           </h3>
-          <p className="mt-4 text-4xl font-bold text-green-600 dark:text-green-400">
-            {stat.value}
-          </p>
+          <p className={`mt-4 text-4xl font-bold ${stat.color}`}>
+    {stat.value}
+</p>
         </div>
       ))}
     </div>

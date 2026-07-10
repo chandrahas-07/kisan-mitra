@@ -5,6 +5,8 @@ import {
   useState,
 } from "react";
 
+import { loginUser } from "../services/api";
+
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
@@ -21,27 +23,27 @@ export function AuthProvider({ children }) {
 
   }, []);
 
-  function login(username, role) {
+  async function login(email, password) {
 
-  const mockUser = {
-    name: username,
-    role,
-  };
+    const response = await loginUser(email, password);
 
-  localStorage.setItem(
-    "kisan-user",
-    JSON.stringify(mockUser)
-  );
+    localStorage.setItem(
+      "kisan-user",
+      JSON.stringify(response.user)
+    );
 
-  setUser(mockUser);
-}
-    
+    setUser(response.user);
+
+    return response.user;
+
+  }
 
   function logout() {
 
     localStorage.removeItem("kisan-user");
 
     setUser(null);
+
   }
 
   return (
@@ -57,6 +59,7 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
 
   );
+
 }
 
 export function useAuth() {

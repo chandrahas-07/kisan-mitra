@@ -1,8 +1,10 @@
-const { getCropBatches } = require("../services/dynamoService");
+
+const { getAllBatches: fetchBatchesFromService } = require("../services/batchService");
 
 async function getAllBatches(req, res) {
   try {
-    const batches = await getCropBatches();
+    // 2. Use the renamed service function here
+    const batches = await fetchBatchesFromService();
 
     res.json(batches);
   } catch (error) {
